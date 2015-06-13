@@ -13,7 +13,7 @@ moduleForComponent('spotify-play-button', 'Unit | Component | spotify play butto
 });
 
 test('It has the core Spotify component functionality', function(assert) {
-  assert.expect(14);
+  assert.expect(16);
 
   coreComponentTests(this, assert, component, {
     expectedClassName: 'spotify-play-button',

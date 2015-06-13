@@ -8,10 +8,13 @@ export default function(context, assert, component, { expectedClassName, expecte
   const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
   const expectedDisplayClassName = `${expectedClassName}-${expectedSize}`;
   const expectedSrc = formatUrl({ baseUrl, size, theme, uri });
+  const newBaseUrl = '//embed.spotify/fake';
   const newClassName = 'spotify-thing';
   const newSize = 'tiny';
+  const newTheme = 'gold';
+  const newUri = 'spotify:track:2Rvhjn78vg0rnuBHCdtz9P';
 
-  let classNames, element;
+  let classNames, element, newSrc;
 
   assert.equal(component._state, 'preRender',
     'Should create the component instance');
@@ -69,5 +72,26 @@ export default function(context, assert, component, { expectedClassName, expecte
 
   assert.ok(classNames.indexOf(`${newClassName}-${newSize}`) > -1,
     'Should have the new display class name');
+
+  assert.equal(element.getAttribute('src'), formatUrl({ baseUrl, size: newSize, theme, uri }),
+    'Should render with the new SRC after changing the size');
+
+  Ember.run(function() {
+    component.setProperties({
+      baseUrl: newBaseUrl,
+      theme: newTheme,
+      uri: newUri,
+    });
+  });
+
+  newSrc = formatUrl({
+    baseUrl: newBaseUrl,
+    size: newSize,
+    theme: newTheme,
+    uri: newUri
+  });
+
+  assert.equal(element.getAttribute('src'), newSrc,
+    'Should render with the new SRC after changing the attributes');
 
 }
