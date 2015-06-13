@@ -5,14 +5,20 @@ export default Ember.Mixin.create({
   allowtransparency: true,
   attributeBindings: [
     'allowtransparency',
+    'dataTest',
     'frameborder',
-    'src'
+    'height',
+    'src',
+    'width',
   ],
+  baseUrl: '//embed.spotify.com',
   classNameBindings: [
     'className',
     'displayClassName'
   ],
   className: 'spotify-widget',
+  dataTest: Ember.computed.oneWay('className'),
+  frameborder: 0,
   tagName: 'iframe',
   theme: null,
   size: null,
@@ -23,11 +29,12 @@ export default Ember.Mixin.create({
   }),
 
   src: Ember.computed('size', 'theme', 'uri', function() {
+    const baseUrl = this.get('baseUrl');
     const size = this.get('size');
     const theme = this.get('theme');
     const uri = this.get('uri');
 
-    return `//embed.spotify.com/follow/1/?uri=${uri}&size=${size}&theme=${theme}`;
+    return `${baseUrl}/?uri=${uri}&size=${size}&theme=${theme}`;
   }),
 
   checkForSize: softAssert('size'),

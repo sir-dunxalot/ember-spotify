@@ -19,7 +19,8 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      "style-src" : "'self' 'unsafe-inline'",
+      "frame-src": "'self' embed.spotify.com",
+      "style-src": "'self' 'unsafe-inline'",
     },
   };
 
