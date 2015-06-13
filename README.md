@@ -1,4 +1,5 @@
-# Ember-spotify
+Ember-spotify [![Build Status](https://travis-ci.org/sir-dunxalot/ember-spotify.svg?branch=master)](https://travis-ci.org/sir-dunxalot/ember-spotify)
+======
 
 This addon adds components for Spotify's play button and follow button.
 
@@ -16,6 +17,8 @@ ember install ember-spotify
 }}
 ```
 
+This renders a widget with the class `.spotify-play-button`. Possible attributes:
+
 - `uri` - The Spotify URI of any song, album, or playlist
 - `size` - `'compact'` (default) or `'large'`
 - `theme` - `'black'` (default) or `'white'`
@@ -31,22 +34,18 @@ ember install ember-spotify
 }}
 ```
 
+This renders a widget with the class `.spotify-follow-button`. Possible attributes:
+
 - `uri` - The Spotify URI of any artist or user profile page
 - `size` - `'basic'` (default) or `'detail'`
 - `theme` - `'dark'` (default) or `'light'`
 
-## Running
+## Styling
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+You can override the height and width of the components using CSS. Spotify places some limitation on the sizing. Please see the [Spotify docs](https://developer.spotify.com/technologies/widgets/) for more info.
 
 ## Development
 
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+- `git clone https://github.com/sir-dunxalot/ember-spotify.git`
+- `ember s`
+- `ember test` or `/tests` route
