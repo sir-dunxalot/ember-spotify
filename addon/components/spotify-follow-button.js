@@ -11,10 +11,7 @@ import layout from '../templates/components/spotify-follow-button';
 export default Ember.Component.extend(
   SpotifyComponentMixin, {
 
-  attributeBindings: [
-    'scrolling',
-    'style',
-  ],
+  attributeBindings: ['scrolling'],
   baseUrl: '//embed.spotify.com/follow/1',
   className: 'spotify-follow-button',
   layout: layout,

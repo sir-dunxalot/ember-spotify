@@ -13,7 +13,9 @@ moduleForComponent('spotify-follow-button', 'Unit | Component | spotify follow b
 });
 
 test('It has the core Spotify component functionality', function(assert) {
-  assert.expect(16);
+  let element;
+
+  assert.expect(17);
 
   coreComponentTests(this, assert, component, {
     expectedBaseUrl: '//embed.spotify.com/follow/1',
@@ -21,6 +23,11 @@ test('It has the core Spotify component functionality', function(assert) {
     expectedSize: 'basic',
     expectedTheme: 'dark',
   });
+
+  element = component.get('element');
+
+  assert.equal(element.getAttribute('scrolling'), 'no',
+    'Should not allow for scrolling in iframe');
 });
 
 test('It resizes based on size attribute', function(assert) {
