@@ -12,20 +12,14 @@ moduleForComponent('spotify-play-button', 'Unit | Component | spotify play butto
 
 });
 
-test('It renders with the correct SRC attribute', function(assert) {
-  let element;
-
-  assert.expect(11);
+test('It has the core Spotify component functionality', function(assert) {
+  assert.expect(14);
 
   coreComponentTests(this, assert, component, {
-    size: 'compact',
-    theme: 'black',
+    expectedClassName: 'spotify-play-button',
+    expectedSize: 'compact',
+    expectedTheme: 'black',
   });
-
-  element = component.get('element');
-
-  assert.ok(element.className.indexOf('spotify-play-button') > 1,
-    'Should render with the play button class name');
 });
 
 test('It resizes based on size attribute', function(assert) {

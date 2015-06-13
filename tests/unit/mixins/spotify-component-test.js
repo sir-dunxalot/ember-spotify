@@ -46,3 +46,24 @@ test('Can build iframe SRC attribute', function(assert) {
   assert.equal(consumingClass.get('src'), expectedSrc.replace(theme, newTheme),
     'SRC should update when option is changed');
 });
+
+test('Sets the correct class names', function(assert) {
+  const expectedClassName = 'spotify-widget';
+  const newClassName = 'spotify-component';
+  const newSize = 'big';
+  const size = 'small';
+
+  consumingClass.set('size', size);
+
+  assert.equal(consumingClass.get('displayClassName'), `${expectedClassName}-${size}`,
+    'Should have the correct display class name by default');
+
+  consumingClass.setProperties({
+    className: newClassName,
+    size: newSize,
+  });
+
+  assert.equal(consumingClass.get('displayClassName'), `${newClassName}-${newSize}`,
+    'Should have the correct display class name after changing className and size');
+
+});

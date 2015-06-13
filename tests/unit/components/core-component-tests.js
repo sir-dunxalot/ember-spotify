@@ -1,13 +1,17 @@
+import Ember from 'ember';
 import formatUrl from '../../helpers/format-url';
 
-export default function(context, assert, component, options) {
+export default function(context, assert, component, { expectedClassName, expectedSize, expectedTheme }) {
   const baseUrl = '//embed.spotify.com';
   const size = component.get('size');
   const theme = component.get('theme');
   const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
+  const expectedDisplayClassName = `${expectedClassName}-${expectedSize}`;
   const expectedSrc = formatUrl({ baseUrl, size, theme, uri });
+  const newClassName = 'spotify-thing';
+  const newSize = 'tiny';
 
-  let element;
+  let classNames, element;
 
   assert.equal(component._state, 'preRender',
     'Should create the component instance');
@@ -15,11 +19,17 @@ export default function(context, assert, component, options) {
   assert.equal(component.get('baseUrl'), baseUrl,
     'Should have the correct Spotify play button endpoint');
 
-  assert.equal(size, options.size,
+  assert.equal(size, expectedSize,
     'Should default to the compact layout');
 
-  assert.equal(theme, options.theme,
+  assert.equal(theme, expectedTheme,
     'Should default to the black theme');
+
+  assert.equal(component.get('className'), expectedClassName,
+    'Should have the correct class name');
+
+  assert.equal(component.get('displayClassName'), expectedDisplayClassName,
+    'Should have the correct display class name');
 
   component.set('uri', uri);
 
@@ -44,5 +54,20 @@ export default function(context, assert, component, options) {
 
   assert.equal(element.getAttribute('allowtransparency'), 'true',
     'Should render with the ability to allow a transparent iframe');
+
+  Ember.run(function() {
+    component.setProperties({
+      className: newClassName,
+      size: newSize
+    });
+  });
+
+  classNames = element.className;
+
+  assert.ok(classNames.indexOf(newClassName) > -1,
+    'Should have the new class name');
+
+  assert.ok(classNames.indexOf(`${newClassName}-${newSize}`) > -1,
+    'Should have the new display class name');
 
 }
