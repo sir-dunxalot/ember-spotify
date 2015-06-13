@@ -8,7 +8,7 @@ export default function(context, assert, component,
   const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
   const expectedDisplayClassName = `${expectedClassName}-${expectedSize}`;
   const expectedSrc = formatUrl({ baseUrl: expectedBaseUrl, size, theme, uri });
-  const newBaseUrl = '//embed.spotify/fake';
+  const newBaseUrl = '//embed.spotify.com/fake';
   const newClassName = 'spotify-thing';
   const newSize = 'tiny';
   const newTheme = 'gold';

@@ -42,7 +42,7 @@ export default function softAssert(dependentKey, options = {}) {
 
       const value = defaultFor(this.get(dependentKey), '');
 
-      if (!value) {
+      if (!value && !Ember.Test.adapter) {
         const constructor = this.get('constructor').toString();
 
         Ember.warn(
