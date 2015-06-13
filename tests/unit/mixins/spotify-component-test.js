@@ -1,12 +1,50 @@
 import Ember from 'ember';
-import SpotifyComponentMixin from '../../../mixins/spotify-component';
+import SpotifyComponentMixin from 'ember-spotify/mixins/spotify-component';
 import { module, test } from 'qunit';
 
-module('Unit | Mixin | spotify component');
+const SpotifyComponentObject = Ember.Object.extend(SpotifyComponentMixin);
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  var SpotifyComponentObject = Ember.Object.extend(SpotifyComponentMixin);
-  var subject = SpotifyComponentObject.create();
-  assert.ok(subject);
+let consumingClass;
+
+module('Unit | Mixin | spotify component', {
+  setup() {
+    consumingClass = SpotifyComponentObject.create();
+  }
+});
+
+test('Basic options', function(assert) {
+  const newClassName = 'spotify-component';
+
+  assert.equal(consumingClass.get('tagName'), 'iframe',
+    'The tag name should be expected to be an iframe');
+
+  assert.equal(consumingClass.get('frameborder'), 0,
+    'The frameborder name should not be expected to appear');
+
+  consumingClass.set('className', newClassName);
+
+  assert.strictEqual(consumingClass.get('dataTest'), newClassName,
+    'The data-test attribute should match the class name');
+
+  assert.strictEqual(consumingClass.get('allowTransparency'), true,
+    'allowtransparency should be expected to be true');
+});
+
+test('Can build iframe SRC attribute', function(assert) {
+  const baseUrl = '//embed.spotify.com';
+  const size = 'large';
+  const theme = 'dark';
+  const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
+  const expectedSrc = `${baseUrl}/?uri=${uri}&size=${size}&theme=${theme}`;
+  const newTheme = 'light';
+
+  consumingClass.setProperties({ baseUrl, size, theme, uri });
+
+  assert.equal(consumingClass.get('src'), expectedSrc,
+    'SRC should update when options are set');
+
+  consumingClass.set('theme', newTheme);
+
+  assert.equal(consumingClass.get('src'), expectedSrc.replace(theme, newTheme),
+    'SRC should update when option is changed');
 });

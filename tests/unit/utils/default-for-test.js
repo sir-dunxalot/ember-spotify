@@ -1,4 +1,4 @@
-import defaultFor from '../../../utils/default-for';
+import defaultFor from 'ember-spotify/utils/default-for';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | default for');

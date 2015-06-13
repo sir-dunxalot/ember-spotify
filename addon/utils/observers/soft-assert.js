@@ -1,5 +1,5 @@
 /**
-Checks whether a property is present on a class and shows a warning to the developer when it is not. In production environments this does nothing.
+Checks whether a property is present on a class and shows a warning to the developer when it is not present.
 
 ```js
 Ember.Component.extend({
@@ -39,11 +39,6 @@ export default function softAssert(dependentKey, options = {}) {
 
   return Ember.on(eventName,
     Ember.observer(dependentKey, function() {
-      const ENV = this.container.lookupFactory('config:environment');
-
-      if (ENV.environment !== 'development') {
-        return Ember.K;
-      }
 
       const value = defaultFor(this.get(dependentKey), '');
 

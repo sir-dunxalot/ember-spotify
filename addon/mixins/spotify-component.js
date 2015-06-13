@@ -1,11 +1,11 @@
 import Ember from 'ember';
-import softAssert from '../utils/observes/soft-assert';
+import softAssert from '../utils/observers/soft-assert';
 
 export default Ember.Mixin.create({
-  allowtransparency: true,
+  allowTransparency: true,
   attributeBindings: [
-    'allowtransparency',
-    'dataTest',
+    'allowTransparency:allowtransparency',
+    'dataTest:data-test',
     'frameborder',
     'height',
     'src',
@@ -37,8 +37,6 @@ export default Ember.Mixin.create({
     return `${baseUrl}/?uri=${uri}&size=${size}&theme=${theme}`;
   }),
 
-  checkForSize: softAssert('size'),
-  checkForTheme: softAssert('theme'),
   checkForUri: softAssert('uri'),
 
 });

@@ -1,4 +1,4 @@
-import softAssert from '../../../utils/soft-assert';
+import softAssert from 'ember-spotify/utils/observers/soft-assert';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | soft assert');
