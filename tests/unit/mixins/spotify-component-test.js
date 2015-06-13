@@ -24,9 +24,6 @@ test('Basic options', function(assert) {
 
   consumingClass.set('className', newClassName);
 
-  assert.strictEqual(consumingClass.get('dataTest'), newClassName,
-    'The data-test attribute should match the class name');
-
   assert.strictEqual(consumingClass.get('allowTransparency'), true,
     'allowtransparency should be expected to be true');
 });

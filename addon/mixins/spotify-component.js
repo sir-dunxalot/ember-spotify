@@ -5,7 +5,6 @@ export default Ember.Mixin.create({
   allowTransparency: true,
   attributeBindings: [
     'allowTransparency:allowtransparency',
-    'dataTest:data-test',
     'frameborder',
     'height',
     'src',
@@ -17,7 +16,6 @@ export default Ember.Mixin.create({
     'displayClassName'
   ],
   className: 'spotify-widget',
-  dataTest: Ember.computed.oneWay('className'),
   frameborder: 0,
   tagName: 'iframe',
   theme: null,
