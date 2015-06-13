@@ -1,13 +1,13 @@
 import Ember from 'ember';
 import formatUrl from '../../helpers/format-url';
 
-export default function(context, assert, component, { expectedClassName, expectedSize, expectedTheme }) {
-  const baseUrl = '//embed.spotify.com';
+export default function(context, assert, component,
+  { expectedBaseUrl, expectedClassName, expectedSize, expectedTheme }) {
   const size = component.get('size');
   const theme = component.get('theme');
   const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
   const expectedDisplayClassName = `${expectedClassName}-${expectedSize}`;
-  const expectedSrc = formatUrl({ baseUrl, size, theme, uri });
+  const expectedSrc = formatUrl({ baseUrl: expectedBaseUrl, size, theme, uri });
   const newBaseUrl = '//embed.spotify/fake';
   const newClassName = 'spotify-thing';
   const newSize = 'tiny';
@@ -19,7 +19,7 @@ export default function(context, assert, component, { expectedClassName, expecte
   assert.equal(component._state, 'preRender',
     'Should create the component instance');
 
-  assert.equal(component.get('baseUrl'), baseUrl,
+  assert.equal(component.get('baseUrl'), expectedBaseUrl,
     'Should have the correct Spotify play button endpoint');
 
   assert.equal(size, expectedSize,
@@ -73,7 +73,14 @@ export default function(context, assert, component, { expectedClassName, expecte
   assert.ok(classNames.indexOf(`${newClassName}-${newSize}`) > -1,
     'Should have the new display class name');
 
-  assert.equal(element.getAttribute('src'), formatUrl({ baseUrl, size: newSize, theme, uri }),
+  newSrc = formatUrl({
+    baseUrl: expectedBaseUrl,
+    size: newSize,
+    theme,
+    uri
+  });
+
+  assert.equal(element.getAttribute('src'), newSrc,
     'Should render with the new SRC after changing the size');
 
   Ember.run(function() {

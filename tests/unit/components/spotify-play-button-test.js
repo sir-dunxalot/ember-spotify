@@ -16,6 +16,7 @@ test('It has the core Spotify component functionality', function(assert) {
   assert.expect(16);
 
   coreComponentTests(this, assert, component, {
+    expectedBaseUrl: '//embed.spotify.com',
     expectedClassName: 'spotify-play-button',
     expectedSize: 'compact',
     expectedTheme: 'black',
