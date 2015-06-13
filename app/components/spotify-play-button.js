@@ -1,0 +1,1 @@
+export { default } from 'ember-spotify/components/spotify-play-button';
