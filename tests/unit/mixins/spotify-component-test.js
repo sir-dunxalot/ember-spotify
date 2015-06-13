@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import SpotifyComponentMixin from 'ember-spotify/mixins/spotify-component';
+import formatUrl from '../../helpers/format-url';
 import { module, test } from 'qunit';
 
 const SpotifyComponentObject = Ember.Object.extend(SpotifyComponentMixin);
@@ -35,7 +36,7 @@ test('Can build iframe SRC attribute', function(assert) {
   const size = 'large';
   const theme = 'dark';
   const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
-  const expectedSrc = `${baseUrl}/?uri=${uri}&size=${size}&theme=${theme}`;
+  const expectedSrc = formatUrl({ baseUrl, size, theme, uri });
   const newTheme = 'light';
 
   consumingClass.setProperties({ baseUrl, size, theme, uri });

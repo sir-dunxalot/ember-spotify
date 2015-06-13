@@ -1,9 +1,11 @@
-export default function(context, assert, component) {
+import formatUrl from '../../helpers/format-url';
+
+export default function(context, assert, component, options) {
   const baseUrl = '//embed.spotify.com';
-  const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
   const size = component.get('size');
   const theme = component.get('theme');
-  const expectedSrc = `${baseUrl}/?uri=${uri}&size=${size}&theme=${theme}`;
+  const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
+  const expectedSrc = formatUrl({ baseUrl, size, theme, uri });
 
   let element;
 
@@ -13,10 +15,10 @@ export default function(context, assert, component) {
   assert.equal(component.get('baseUrl'), baseUrl,
     'Should have the correct Spotify play button endpoint');
 
-  assert.equal(size, 'compact',
+  assert.equal(size, options.size,
     'Should default to the compact layout');
 
-  assert.equal(theme, 'black',
+  assert.equal(theme, options.theme,
     'Should default to the black theme');
 
   component.set('uri', uri);
