@@ -6,8 +6,9 @@ export default function(context, assert, component,
   const size = component.get('size');
   const theme = component.get('theme');
   const uri = 'spotify:track:3yn7NKed1z6eforU1VcjXf';
+  const view = component.get('view');
   const expectedDisplayClassName = `${expectedClassName}-${expectedSize}`;
-  const expectedSrc = formatUrl({ baseUrl: expectedBaseUrl, size, theme, uri });
+  const expectedSrc = formatUrl({ baseUrl: expectedBaseUrl, size, theme, uri, view });
   const newBaseUrl = '//embed.spotify.com/fake';
   const newClassName = 'spotify-thing';
   const newSize = 'tiny';
@@ -77,7 +78,8 @@ export default function(context, assert, component,
     baseUrl: expectedBaseUrl,
     size: newSize,
     theme,
-    uri
+    uri,
+    view
   });
 
   assert.equal(element.getAttribute('src'), newSrc,
@@ -88,6 +90,7 @@ export default function(context, assert, component,
       baseUrl: newBaseUrl,
       theme: newTheme,
       uri: newUri,
+      view
     });
   });
 
@@ -95,7 +98,8 @@ export default function(context, assert, component,
     baseUrl: newBaseUrl,
     size: newSize,
     theme: newTheme,
-    uri: newUri
+    uri: newUri,
+    view
   });
 
   assert.equal(element.getAttribute('src'), newSrc,

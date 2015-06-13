@@ -26,13 +26,20 @@ export default Ember.Mixin.create({
     return this.get('className') + '-' + this.get('size');
   }),
 
-  src: Ember.computed('size', 'theme', 'uri', function() {
+  src: Ember.computed('size', 'theme', 'uri', 'view', function() {
     const baseUrl = this.get('baseUrl');
     const size = this.get('size');
     const theme = this.get('theme');
     const uri = this.get('uri');
+    const view = this.get('view');
 
-    return `${baseUrl}/?uri=${uri}&size=${size}&theme=${theme}`;
+    let src = `${baseUrl}/?uri=${uri}&size=${size}&theme=${theme}`;
+
+    if (view) {
+      src += `&view=${view}`;
+    }
+
+    return src;
   }),
 
   checkForUri: softAssert('uri'),
