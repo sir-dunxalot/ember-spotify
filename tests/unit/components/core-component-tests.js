@@ -40,6 +40,9 @@ export default function(context, assert, component,
   assert.equal(component.get('src'), expectedSrc,
     'Should have the correct SRC including default values');
 
+  assert.strictEqual(component.get('loaded'), false,
+    'Loaded should be false before render');
+
   context.render();
 
   assert.equal(component._state, 'inDOM',

@@ -13,10 +13,12 @@ export default Ember.Mixin.create({
   baseUrl: '//embed.spotify.com',
   classNameBindings: [
     'className',
-    'displayClassName'
+    'displayClassName',
+    'loaded',
   ],
   className: 'spotify-widget',
   frameborder: 0,
+  loaded: false,
   tagName: 'iframe',
   theme: null,
   size: null,
@@ -43,5 +45,9 @@ export default Ember.Mixin.create({
   }),
 
   checkForUri: softAssert('uri'),
+
+  watchForLoad: Ember.on('didInsertElement', function() {
+    this.$().on('load', Ember.run.bind(this, this.set, 'loaded', true));
+  }),
 
 });

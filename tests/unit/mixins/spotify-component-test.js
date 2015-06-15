@@ -22,6 +22,9 @@ test('Basic options', function(assert) {
   assert.equal(consumingClass.get('frameborder'), 0,
     'The frameborder name should not be expected to appear');
 
+  assert.strictEqual(consumingClass.get('loaded'), false,
+    'Loaded should default to false');
+
   consumingClass.set('className', newClassName);
 
   assert.strictEqual(consumingClass.get('allowTransparency'), true,

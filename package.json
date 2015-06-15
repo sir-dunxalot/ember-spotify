@@ -1,6 +1,6 @@
 {
   "name": "ember-spotify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An easy interface for using Spotify's Web Widgets in Ember CLI apps",
   "directories": {
     "doc": "doc",

@@ -18,7 +18,7 @@ test('It has the core Spotify component functionality', function(assert) {
 
   let element;
 
-  assert.expect(18);
+  assert.expect(19);
 
   coreComponentTests(this, assert, component, {
     expectedBaseUrl: '//embed.spotify.com',

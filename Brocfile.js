@@ -13,4 +13,6 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 var app = new EmberAddon();
 
+app.import('vendor/test-styling.css');
+
 module.exports = app.toTree();
