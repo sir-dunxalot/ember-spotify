@@ -9,13 +9,6 @@ moduleForComponent('spotify-play-button', 'Unit | Component | spotify play butto
 
   setup() {
     component = this.subject();
-
-    this.registry.register('service:-routing', Ember.Object.extend({
-      availableRoutes: function() { return ['index']; },
-      hasRoute: function(name) { return name === 'index'; },
-      isActiveForRoute: function() { return true; },
-      generateURL: function() { return "/"; }
-    }));
   },
 
 });
