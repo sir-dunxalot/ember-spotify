@@ -22,7 +22,7 @@ test('visiting /iframe-loading', function(assert) {
   visit('/');
 
   andThen(function() {
-    const iframes = Ember.A(Ember.$('iframe'));
+    const iframes = Ember.A(Ember.$('iframe').filter('[class*="spotify"]'));
 
     iframes.each(function(i, iframe) {
       assert.ok(iframe.className.indexOf('loaded') === -1,
